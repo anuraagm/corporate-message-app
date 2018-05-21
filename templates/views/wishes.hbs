@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<style>
+body{
+  background-color: white;
+  text: black;
+}
+h1{
+    font-family: Raleway;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 26.4px;
+   }
+h2{
+     font-family: Raleway;
+     font-size: 24px;
+     font-style: normal;
+     font-variant: normal;
+     font-weight: 500;
+     line-height: 26.4px;
+  }
+  .banner1{
+    font-family: Raleway;
+    background-color: orange;
+  }
+ .container1{
+   font-family: Raleway;
+ }
+ img {
+   vertical-align: middle;
+   max-width: 300px;
+   max-height: 300px;
+   border-radius: 50%;
+ }
+ .senderpic{
+   max-width: 100px;
+   max-height: 100px;
+ }
+ .messagesRow {
+   padding: 100px 0px;
+ }
+ .messagesRow:nth-child(odd) {
+    font-family: Raleway;
+    background: #f6f6f6;
+}
+ .messagesRow:nth-child(even) {
+    font-family: Raleway;
+    background: #f3f3f3;
+}
+.picspc , .msgspc {
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .messagesRow:nth-child(odd) > .picspc {
+     float: right !important;
+ }
+}
+@media (max-width: 768px) {
+  .picspc {
+    padding-bottom: 20px;
+  }
+}
+</style>
+<head><title>Happy {{data.occ}} {{data.recID.title}}</title></head>
+<body>
+  <div class = "row">
+   <center>
+   <div class = "banner1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+     <h1>Happy {{data.occ}} {{data.recID.title}} !</h1>
+     <img src = "{{cloudinaryUrl data.recID.custPic}}" alt = "Avatar">
+     <h1>Scroll down to see your friends wishes!</h1>
+   </div>
+ </center>
+</div>
+{{#each data.messages}}
+  <div class = "row messagesRow">
+    <div class = "picspc col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <img src = "{{cloudinaryUrl this.sender.custPic}}" alt = "Avatar" class="senderpic">
+      <div class = "senderName">
+        <h4>{{this.sender.title}}</h4>
+      </div>
+    </div>
+    <div class = "msgspc col-lg-8 col-md-8 col-sm-12 col-xs-12">
+      <h2 class="msg1">{{this.message}}</h2>
+    </div>
+  </div>
+{{/each}}
+</body>
+</html>

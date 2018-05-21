@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<style>
+    body{
+      background-color: white;
+      text: black;
+    }
+    h1{
+        font-family: Raleway;
+        font-size: 24px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 500;
+        line-height: 26.4px;
+       }
+    #textbox{
+      font-family: Raleway;
+      font-size: 16px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 500;
+      line-height: 19px;
+    }
+    #input{
+      font-family: Raleway;
+      font-size: 16px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 500;
+    }
+    #main{
+      padding-top: 100px;
+    }
+    #button{
+      padding-top: 20px;
+    }
+    .rec{
+      margin: 0px auto;
+    }
+  .avatar {
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+   .avatar2{
+     width: 100px;
+     height: 100px;
+     border-radius: 50%;
+  }
+   .con{
+     float: left;
+     padding-left: 300px;
+     font-family: Raleway;
+   }
+   .rec{
+     padding-right: 10px;
+   }
+   h4{
+     padding-left: 0px;
+   }
+   h3{
+     font-family: Raleway;
+   }
+   #sec1{
+     font-family: Raleway;
+     padding-top: 60px;
+   }
+   #temp1{
+     font-family: Raleway;
+   }
+   #temp2{
+     font-family: Raleway;
+   }
+   #head{
+     border-bottom: none;
+   }
+</style>
+<head><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script></head>
+<section class = "sec1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class = "page-header col-lg-4 col-md-4 col-sm-6 col-xs-8" id="head">
+    {{#if data.cust1.cname.compLogo}}
+      <img src="{{{cloudinaryUrl data.cust1.cname.compLogo}}}" id="logo">
+    {{/if}}
+  </div>
+</section>
+<body>
+  <center>
+    <section class = "sec2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class = "rec img-responsive center-block">
+        {{#if data.cust1.custPic}}
+          <img src = "{{{cloudinaryUrl data.cust1.custPic}}}" alt="Avatar" class="avatar">
+        {{/if}}
+        <h3 id="temp1">Wish {{data.cust1.title}}</h3><h3 id="temp2">on {{data.cust1.gender}} {{data.urls1.occ}}</h3>
+      </div>
+    </section>
+    <section class = "sec 3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class = "con col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        {{#if data.cust2.custPic}}
+          <img src = "{{{cloudinaryUrl data.cust2.custPic}}}" alt="Avatar" class="avatar2">
+        {{/if}}
+      </div>
+      <div class = "sec col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <form method='POST'>
+          <textarea id = "textbox" name = 'message'rows = "15" cols = "40" class = "msg">
+Enter Message
+          </textarea>
+      </div>
+    </section>
+      <script>
+          var lines = $("textarea[name=message]").val().split(/\n/);
+          var texts = [];
+          for (var i=0; i < lines.length; i++) {
+          if (/\S/.test(lines[i])) {
+            texts.push($.trim(lines[i]));
+           }
+        }
+          var n = texts.toString().split(",").join("\n");
+          $("textarea[name=message]") .val(n);
+       </script>
+       <input type = "hidden" name = "hidSendID" value = "{{data.cust2.uid}}">
+       <input type = "hidden" name = "hidRecID" value = "{{data.cust1.uid}}">
+       <section id = "button" class = "sec4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <input type = "submit" value = "SUBMIT" id = "input">
+       </section>
+      </form>
+  </center>
+</body>
+</script>
+<section id = "sec1" class = "sec1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class = "page-footer"><center>{{data.cust1.cname.footer}}</center></div>
+</section>
+</html>
